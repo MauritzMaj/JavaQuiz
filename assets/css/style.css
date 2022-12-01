@@ -52,7 +52,7 @@
     border-radius: 8px;
   }
   
-  .question {
+  .questions {
     flex: auto;
     flex-wrap: wrap;
     flex-direction: column;
@@ -73,7 +73,7 @@
     font-size: 1em;
     letter-spacing: 0.10px;
     line-height: 5px;
-    max-width: 100px;
+    max-width:fit-content;
     padding: 10px 20px;
     text-align: center;
 
@@ -97,7 +97,7 @@
     height: 100px;
     padding: 10px;
     position:relative;
-    margin-top: -120px;
+    margin-top: -90px;
     background: white;
     color: rgb(0, 0, 0);
     text-align: center;
@@ -118,7 +118,7 @@
       margin: 20px auto;
       width: 92vw;
     }
-    .question {
+    .questions {
         margin: auto;
         padding: 20px;
         height:min-content;
