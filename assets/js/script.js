@@ -1,11 +1,15 @@
 // define variables
 var StartBtn = document.querySelector("#start-button")
-var Question = document.querySelector(".questions")
+var questionContainer = document.querySelector(".questions")
 var options = document.querySelectorAll(".option")
 var countdown = document.querySelector("#countdown")
+var result = document.getElementById("isTrue")
+var form = document.getElementById('name')
+var label = document.getElementById("label")
 var timer;
 var timerCount;
-var counter = 0;
+var counter =0;
+var score = 0;
 
 // store Questions in array
 var myQuestions = [{
@@ -21,10 +25,10 @@ var myQuestions = [{
 {
     id: 1,
     q: "Inside which HTML element do we put the JavaScript?",
-    a: [{ text: "<js>", isCorrect: false},
-        { text: "<script>", isCorrect: true },
-        { text: "<style>", isCorrect: false },
-        { text: "<javascript>", isCorrect: false }
+    a: [{ text: "js", isCorrect: false},
+        { text: "script", isCorrect: true },
+        { text: "style", isCorrect: false },
+        { text: "javascript", isCorrect: false }
     ]
 
 },
@@ -40,14 +44,12 @@ var myQuestions = [{
 }
 ]
 
-var start = true
+//var start = true
 
 // Iterate
 function iterate() {
 
-
-
-// Getting the question
+ //Getting the question
 var Question = document.getElementById('question')
 
 
@@ -77,10 +79,6 @@ op4.value = myQuestions[counter].a[3].isCorrect;
 
 }
 
-if (startGame) {
-    iterate("0");
-}
-
 
 // function to start timer
 function startTimer() {
@@ -106,42 +104,55 @@ function startTimer() {
 //display the next question
 function showQuestion(){
 
-if (Question.style.display === "none") { 
-    Question.style.display = "block"  
+if (questionContainer.style.display === "none") { 
+    questionContainer.style.display = "block"  
 }
 }
 
 
 //answer question correctly
-var answer = document.getElementById("isTrue");
-var choice = myQuestions[counter].a.isCorrect;
-
-function NextQuestion(){
-    Question.textContent = myQuestions[counter++]
-}
 
 function pickAnswer(){
 
+    options.forEach(option => 
+        option.addEventListener("click", function(event) {
+        var element = event.target;
+      
+        if (element.matches(".option")) {
+          var value = element.getAttribute("value");
+    
+
     //add time for correct answer
-    if (choice === true && timerCount > 0) {
-        timerCount +2;
-        answer.innerHTML = "Correct!";
-        answer.style.color = "green";
+    if (value == "true" && timerCount > 0) {
+        timerCount +=5;
+        score +=10;
+        result.innerHTML = "Correct!";
+        result.style.color = "green";
     }
 
 // subtract time for wrong answer
-    if (choice === false && timerCount > 0) {
-    timerCount -2;
-    answer.innerHTML= "Incorrect!";
-        answer.style.color = "red";
-
+    if (value == "false" && timerCount > 0) {
+    timerCount -=5;
+    result.innerHTML= "Incorrect!";
+    result.style.color = "red";
     }
 
-NextQuestion();
-   
+if(counter<=1){
+    iterate(counter+=1);
 }
 
+else {clearInterval(timer);
+    result.innerHTML = ("Your Score is " + score);
+    result.style.color = "black";
+    label.style.display= "block";
+    form.style.display = "block"; 
+}
 
+}}))}
+
+
+
+      
 //StartGame function, called when "start" is clicked.
 function startGame() {
     timerCount = 30;
@@ -152,12 +163,10 @@ function startGame() {
     showQuestion()
     startTimer()
     iterate() 
+    pickAnswer()
+    saveInfo()
 
-     //add eventlistener to option button
-options.forEach(option =>
-    option.addEventListener("click", pickAnswer))
-  }
-
+}
 
 
 //add eventlisterner to start button

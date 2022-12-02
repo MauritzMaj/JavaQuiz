@@ -62,7 +62,7 @@
     text-align: center;
     padding: 05px;
     width: 40vw;
-    height: 20vw;
+    height: 23vw;
   }
   
   .option{
@@ -78,6 +78,16 @@
     text-align: center;
 
   }
+
+form {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  
+
+}
+
+
 
   .start {
 
