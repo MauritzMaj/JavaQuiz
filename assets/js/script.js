@@ -1,10 +1,11 @@
 // define variables
 var StartBtn = document.querySelector("#start-button")
 var Question = document.querySelector(".questions")
-var options = document.querySelector(".option")
+var options = document.querySelectorAll(".option")
 var countdown = document.querySelector("#countdown")
 var timer;
 var timerCount;
+var counter = 0;
 
 // store Questions in array
 var myQuestions = [{
@@ -51,10 +52,8 @@ var Question = document.getElementById('question')
 
 
 // Setting the question text
-for (var i = 0; i < myQuestions.length; i++) {
-    var x = myQuestions[i];
 
-Question.innerHTML = x.q;
+Question.innerHTML = myQuestions[counter].q;
 
 // Getting the options
 var op1 = document.getElementById('op1');
@@ -64,24 +63,24 @@ var op4 = document.getElementById('op4');
 
 
 // Providing option text
-op1.innerHTML = x.a[0].text;
-op2.innerHTML = x.a[1].text;
-op3.innerHTML = x.a[2].text;
-op4.innerHTML = x.a[3].text;
+op1.innerHTML = myQuestions[counter].a[0].text;
+op2.innerHTML = myQuestions[counter].a[1].text;
+op3.innerHTML = myQuestions[counter].a[2].text;
+op4.innerHTML = myQuestions[counter].a[3].text;
 
 // Providing the true or false value to the options
-op1.value = x.a[0].isCorrect;
-op2.value = x.a[1].isCorrect;
-op3.value = x.a[2].isCorrect;
-op4.value = x.a[3].isCorrect;
+op1.value = myQuestions[counter].a[0].isCorrect;
+op2.value = myQuestions[counter].a[1].isCorrect;
+op3.value = myQuestions[counter].a[2].isCorrect;
+op4.value = myQuestions[counter].a[3].isCorrect;
 
 
 }
 
-if (start) {
+if (startGame) {
     iterate("0");
-    }
 }
+
 
 // function to start timer
 function startTimer() {
@@ -115,25 +114,31 @@ if (Question.style.display === "none") {
 
 //answer question correctly
 var answer = document.getElementById("isTrue");
-var choice = document.getElementsByClassName("option");
+var choice = myQuestions[counter].a.isCorrect;
 
+function NextQuestion(){
+    Question.textContent = myQuestions[counter++]
+}
 
-function Answer(){
+function pickAnswer(){
 
     //add time for correct answer
-    if (isCorrect === true && timerCount > 0) {
+    if (choice === true && timerCount > 0) {
         timerCount +2;
         answer.innerHTML = "Correct!";
         answer.style.color = "green";
     }
 
 // subtract time for wrong answer
-    if (isCorrect === false && timerCount > 0) {
+    if (choice === false && timerCount > 0) {
     timerCount -2;
     answer.innerHTML= "Incorrect!";
         answer.style.color = "red";
+
     }
 
+NextQuestion();
+   
 }
 
 
@@ -147,11 +152,16 @@ function startGame() {
     showQuestion()
     startTimer()
     iterate() 
+
+     //add eventlistener to option button
+options.forEach(option =>
+    option.addEventListener("click", pickAnswer))
   }
 
-//add eventlistener to option button
 
-choice[i].addEventListener("click", Answer);
 
 //add eventlisterner to start button
 StartBtn.addEventListener("click", startGame);
+
+
+
