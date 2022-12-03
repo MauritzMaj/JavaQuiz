@@ -1,15 +1,21 @@
 // define variables
 var StartBtn = document.querySelector("#start-button")
+var ScoreBtn = document.querySelector('#score-button')
 var questionContainer = document.querySelector(".questions")
 var options = document.querySelectorAll(".option")
 var countdown = document.querySelector("#countdown")
 var result = document.getElementById("isTrue")
 var form = document.getElementById('name')
 var label = document.getElementById("label")
+var submitBtn = document.getElementById("submit-button")
+var scoreReport = document.querySelector("#score-report")
 var timer;
 var timerCount;
 var counter =0;
 var score = 0;
+var nameInput = document.querySelector("#name").value;
+
+
 
 // store Questions in array
 var myQuestions = [{
@@ -145,13 +151,28 @@ else {clearInterval(timer);
     result.innerHTML = ("Your Score is " + score);
     result.style.color = "black";
     label.style.display= "block";
-    form.style.display = "block"; 
+    form.style.display = "block";
+    submitBtn.style.display = "block";
+    localStorage.setItem("score", score);
+
 }
+
+
 
 }}))}
 
 
+function Submit(event){
+    event.PreventDefault();
+    localStorage.setItem("name", nameInput);
+}
+function ShowScore(){
 
+    localStorage.getItem("score");
+    scoreReport.innerHTML = ("Player:" + (nameInput) +" Score:" + (score));
+
+
+}
       
 //StartGame function, called when "start" is clicked.
 function startGame() {
@@ -164,13 +185,13 @@ function startGame() {
     startTimer()
     iterate() 
     pickAnswer()
-    saveInfo()
 
+submitBtn.addEventListener("click",Submit);
 }
-
 
 //add eventlisterner to start button
 StartBtn.addEventListener("click", startGame);
+ScoreBtn.addEventListener("click", ShowScore);
 
 
 

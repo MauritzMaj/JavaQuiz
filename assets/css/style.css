@@ -38,6 +38,15 @@
     text-shadow: 2px 0px #0a0a0a;
   }
   
+  footer {
+    padding: 40px;
+    margin-top: 10rem;
+    text-align: center;
+    background: white;
+    color: rgb(87, 16, 118);
+    text-shadow: 2px 0px #0a0a0a;
+  }
+
   main {
     display: flex;
     flex-wrap: wrap;
@@ -86,7 +95,6 @@ form {
   
 
 }
-
 
 
   .start {
