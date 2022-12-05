@@ -5,7 +5,7 @@ var questionContainer = document.querySelector(".questions")
 var options = document.querySelectorAll(".option")
 var countdown = document.querySelector("#countdown")
 var result = document.getElementById("isTrue")
-var form = document.getElementById('name')
+var form = document.getElementById("name")
 var label = document.getElementById("label")
 var submitBtn = document.getElementById("submit-button")
 var scoreReport = document.querySelector("#score-report")
@@ -13,7 +13,7 @@ var timer;
 var timerCount;
 var counter =0;
 var score = 0;
-var nameInput = document.querySelector("#name").value;
+
 
 
 
@@ -164,12 +164,14 @@ else {clearInterval(timer);
 
 function Submit(event){
     event.PreventDefault();
-    localStorage.setItem("name", nameInput);
+    var nameInput = document.querySelector("#name");
+    localStorage.setItem("name", nameInput.value);
 }
 function ShowScore(){
 
-    localStorage.getItem("score");
-    scoreReport.innerHTML = ("Player:" + (nameInput) +" Score:" + (score));
+    var Player = localStorage.getItem("name")
+    var Finalscore = localStorage.getItem("score");
+    scoreReport.innerHTML = ("Player:" + Player +" Score:" + Finalscore);
 
 
 }
@@ -186,12 +188,13 @@ function startGame() {
     iterate() 
     pickAnswer()
 
-submitBtn.addEventListener("click",Submit);
+
 }
 
 //add eventlisterner to start button
 StartBtn.addEventListener("click", startGame);
 ScoreBtn.addEventListener("click", ShowScore);
+submitBtn.addEventListener("click",Submit);
 
 
 
