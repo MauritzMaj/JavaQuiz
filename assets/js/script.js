@@ -165,7 +165,7 @@ else {clearInterval(timer);
 
 function Submit(event){
     event.preventDefault();
-    localStorage.setItem("", nameInput.value);
+    localStorage.setItem("name", nameInput.value);
     
 }
 
