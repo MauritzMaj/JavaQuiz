@@ -9,6 +9,12 @@ var form = document.getElementById("name")
 var label = document.getElementById("label")
 var submitBtn = document.getElementById("submit-button")
 var scoreReport = document.querySelector("#score-report")
+var nameInput = document.querySelector("#name")
+var report = {
+    name:nameInput.value.trim(),
+    score: score
+}
+
 var timer;
 var timerCount;
 var counter =0;
@@ -163,10 +169,13 @@ else {clearInterval(timer);
 
 
 function Submit(event){
-    event.PreventDefault();
-    var nameInput = document.querySelector("#name");
-    localStorage.setItem("name", nameInput.value);
+    event.preventDefault();
+    localStorage.setItem("", nameInput.value);
+    
 }
+
+
+
 function ShowScore(){
 
     var Player = localStorage.getItem("name")
@@ -194,7 +203,7 @@ function startGame() {
 //add eventlisterner to start button
 StartBtn.addEventListener("click", startGame);
 ScoreBtn.addEventListener("click", ShowScore);
-submitBtn.addEventListener("click",Submit);
+submitBtn.addEventListener("click", Submit);
 
 
 
