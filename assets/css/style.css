@@ -140,6 +140,8 @@ form {
         margin: auto;
         padding: 20px;
         height:min-content;
+        width: min-content;
+
     }
 
     .timer {
@@ -150,6 +152,14 @@ form {
         flex-direction: column;
         flex:auto;
         margin-bottom: 10px;
+        margin-top: 10px;
+        min-height: min-content;
+        line-height: 1rem;
+    }
+
+    form {
+      max-width: 70% ;
+      margin: auto;
     }
   } 
   
@@ -164,4 +174,4 @@ form {
       height: 200px;
     }
    
-  
+  }
