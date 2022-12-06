@@ -10,11 +10,6 @@ var label = document.getElementById("label")
 var submitBtn = document.getElementById("submit-button")
 var scoreReport = document.querySelector("#score-report")
 var nameInput = document.querySelector("#name")
-var report = {
-    name:nameInput.value.trim(),
-    score: score
-}
-
 var timer;
 var timerCount;
 var counter =0;
